@@ -8,9 +8,40 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+          }
+        }
+      }
+    </script>
+
+    <!-- FAV AND ICONS   -->
+    <%= favicon_link_tag asset_path('/assets/favicon.ico') %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-[#EBEBEB] max-w-full overflow-x-hidden">
+    <%= render "shared/header" %>
+      <%= yield %>
+    <%= render "shared/footer" %>
+    <script>
+      let toggleBtn = document.querySelector("#navbar-toggle");
+      let collapse = document.querySelector("#navbar-collapse");
+
+      toggleBtn.onclick = () => {
+        collapse.classList.toggle("hidden");
+        collapse.classList.toggle("flex");
+      };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
   </body>
 </html>
